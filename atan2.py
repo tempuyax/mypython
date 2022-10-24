@@ -3,7 +3,20 @@
 # python via termux
 import math
 
-print ('Pahor.m @Oktober 2022')
+# Coloring text mode
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    OKYELLOW = '\033[33m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+# Function Angle 360 Controling
 def sign_360(Azimut):
     if Azimut > 0:
         return Azimut       # 1 or Positive Angle
@@ -12,12 +25,12 @@ def sign_360(Azimut):
     else:
         return Azimut + 360 # -1 or Negative Angle
 
-print ('#BasePoint#')
+print (bcolors.BOLD,'#BasePoint#',bcolors.ENDC)
 # input East
 while True:
     try:
         BaseEast = float(input("East : "))
-        print ("You entered: ",BaseEast)
+        #print ("You entered: ",BaseEast)
         break;
     except ValueError:
         print ("Invalid input")
@@ -26,19 +39,21 @@ while True:
 while True:
     try:
         BaseNorth = float(input("North : "))
-        print ("You entered: ",BaseNorth)
+        #print ("You entered: ",BaseNorth)
         break;
     except ValueError:
         print ("Invalid input")
 
-print ('East ' + str(BaseEast) + ',' + 'North ' + str(BaseNorth))
+#print ('East ' + str(BaseEast) + ',' + 'North ' + str(BaseNorth))
+
 #≠==========÷=========================
-print ('#TargetPoint#')
+print (bcolors.BOLD,'#TargetPoint#',bcolors.ENDC)
+
 # input East
 while True:
     try:
         TargetEast = float(input("East : "))
-        print ("You entered: ",TargetEast)
+ #       print ("You entered: ",TargetEast)
         break;
     except ValueError:
         print ("Invalid input")
@@ -47,16 +62,33 @@ while True:
 while True:
     try:
         TargetNorth = float(input("North : "))
-        print ("You entered: ",TargetNorth)
+#        print ("You entered: ",TargetNorth)
         break;
     except ValueError:
         print ("Invalid input")
 
-print ('East ' + str(TargetEast) + ',' + 'North ' + str(TargetNorth))
+#print ('East ' + str(TargetEast) + ',' + 'North ' + str(TargetNorth))
 
+# Main Calculation of Bearing
 nLat = TargetEast-BaseEast
 nDef = TargetNorth - BaseNorth
-Azimut = math.atan2 (nLat,nDef)
-print ("Azimut Rad " + str(Azimut))
-print ("Azimut Deg " + str(math.degrees(Azimut)))
-print ("Azimut 360 " + str(sign_360(math.degrees(Azimut))))
+AzimutRad = math.atan2 (nLat,nDef)
+AzimutDeg = math.degrees(AzimutRad)
+Azimut360 = sign_360(AzimutDeg)
+print (bcolors.BOLD,'~Bearing~',bcolors.ENDC)
+print ("Azimut (Rad) " + str(AzimutRad))
+print ("Azimut (Deg) " + str(AzimutDeg))
+print ("Azimut (360) " + str(Azimut360))
+
+# DMS Angle Format
+D = int(Azimut360)
+M = int((Azimut360-D)*60)
+S = int((((Azimut360-D)*60)-M)*60)
+
+print (bcolors.OKCYAN,'Geodetic Instrument',bcolors.ENDC)
+print ("HA :", str(D),"°",str(M),'"',str(S),"'")
+print ("HD :", str(math.dist([TargetEast,TargetNorth],[BaseEast,BaseNorth])))
+
+print (bcolors.OKYELLOW,'Pahor.m @Oktober 2022',bcolors.ENDC)
+print (bcolors.OKYELLOW,'Foreman Surveyor',bcolors.ENDC)
+
