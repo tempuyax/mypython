@@ -85,9 +85,13 @@ D = int(Azimut360)
 M = int((Azimut360-D)*60)
 S = int((((Azimut360-D)*60)-M)*60)
 
+HD = math.dist([TargetEast,TargetNorth],[BaseEast,BaseNorth])
+
 print (bcolors.OKCYAN,'Geodetic Instrument',bcolors.ENDC)
 print ("HA :", str(D),"°",str(M),'"',str(S),"'")
-print ("HD :", str(math.dist([TargetEast,TargetNorth],[BaseEast,BaseNorth])))
+print ("HD :", str(HD))
+
+#print (repr(f'{HD:8.3f}'))
 
 print (bcolors.OKYELLOW,'Pahor.m @Oktober 2022',bcolors.ENDC)
 print (bcolors.OKYELLOW,'Foreman Surveyor',bcolors.ENDC)

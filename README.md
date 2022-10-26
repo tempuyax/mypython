@@ -10,3 +10,4 @@ Output :
 - Jarak antara 2 titik *(HD)*
 
 ![image](gambar1.jpg)
+*ScreenShot Layar HP Oppo A55*
