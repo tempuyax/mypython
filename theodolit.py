@@ -67,7 +67,7 @@ while True:
     except ValueError:
         print ("Invalid input")
 
-0# input East
+# input East
 while True:
     try:
         BT = float(input("BT: "))
@@ -85,23 +85,56 @@ while True:
     except ValueError:
         print ("Invalid input")
 
+
+#def Release():
+
+ #
+ #   try:
+ #       print 'Please select one of the following?\nCompletion = 0\nRelease ID = 1\nVersion ID = 2\Build ID = 3
+ #       a = int(input("Please select the type of release required: "))
+ #       if a == 0:
+ #           files(a)
+ #       elif a == 1:
+ #           files(a)
+ #       elif a == 2:
+ #           files(a)
+ #       elif a == 3:
+ #           files(a)
+ #       else:
+ #           raise 'incorrect'
+ #   except 'incorrect':
+ #       print 'Try Again'
+ #   except:
+ #       print 'Error'
+
+#Release()
+
 while True:
     try:
         VA = float(input("VA (DD.MMSS): "))
         #print (VA)
+
         Dd = int(VA)
-        #if Dd <= 360:
-        VA = ((VA-Dd)*100)
-        #else:
-           #except ValueError:
-           #print (VA)
+        if Dd < 180:
+           VA = ((VA-Dd)*100)
+        else:
+           print ("Degree Max 180")
+           raise  ValueError
+
         Md = int(VA)
-        VA = ((VA-Md)*100)
-        #print (VA)
+        if Md < 60:
+           VA = ((VA-Md)*100)
+        else:
+           print ("Minute Max 60")
+           raise ValueError
+
         Sd = round(VA)
-        #print ("You entered: ",Dd," ",Md," ",Sd)
-        #print ("Decimal VA : ",Dd+(Md/60)+(Sd/3600))
-        VA = Dd+(Md/60)+(Sd/3600)
+        if Sd < 60:
+           VA = Dd+(Md/60)+(Sd/3600)
+        else:
+           print ("Secone Max 60")
+           raise ValueError
+
         break;
     except ValueError:
         print ("Invalid input")
