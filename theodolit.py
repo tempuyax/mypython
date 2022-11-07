@@ -16,16 +16,8 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-# Function Angle 360 Controling
-def sign_360(Azimut):
-    if Azimut > 0:
-        return Azimut       # 1 or Positive Angle
-    elif Azimut == 0:
-        return 0.0          # 0 or Zero Angle
-    else:
-        return Azimut + 360 # -1 or Negative Angle
-
-print (bcolors.BOLD,'#BasePoint#',bcolors.ENDC)
+print (bcolors.OKCYAN,'~~~Theodolit Calculator~~~',bcolors.ENDC)
+print (bcolors.BOLD,'#Base Point#',bcolors.ENDC)
 # input East
 while True:
     try:
@@ -85,9 +77,7 @@ while True:
     except ValueError:
         print ("Invalid input")
 
-
 #def Release():
-
  #
  #   try:
  #       print 'Please select one of the following?\nCompletion = 0\nRelease ID = 1\nVersion ID = 2\Build ID = 3
@@ -106,13 +96,11 @@ while True:
  #       print 'Try Again'
  #   except:
  #       print 'Error'
-
 #Release()
 
 while True:
     try:
         VA = float(input("VA (DD.MMSS): "))
-        #print (VA)
 
         Dd = int(VA)
         if Dd < 180:
@@ -135,6 +123,7 @@ while True:
            print ("Secone Max 60")
            raise ValueError
 
+        print (bcolors.OKGREEN,"VA DMS=> ", str(Dd),"°",str(Md),"'",str(Sd),'"',bcolors.ENDC)
         break;
     except ValueError:
         print ("Invalid input")
@@ -142,23 +131,33 @@ while True:
 while True:
     try:
         HA = float(input("HA (DD.MMSS): "))
-        #print (HA)
+
         Dd = int(HA)
-        HA = ((HA-Dd)*100)
-        #print (HA)
+        if Dd < 360:
+           HA = ((HA-Dd)*100)
+        else:
+           print ("Degree Max 360")
+           raise  ValueError
+
         Md = int(HA)
-        HA = ((HA-Md)*100)
-        #print (HA)
+        if Md < 60:
+           HA = ((HA-Md)*100)
+        else:
+           print ("Minute Max 60")
+           raise ValueError
+
         Sd = round(HA)
-        #print ("You entered: ",Dd," ",Md," ",Sd)
-        #print ("Decimal HA : ",Dd+(Md/60)+(Sd/3600))
-        HA = Dd+(Md/60)+(Sd/3600)
+        if Sd < 60:
+           HA = Dd+(Md/60)+(Sd/3600)
+        else:
+           print ("Secone Max 60")
+           raise ValueError
+
+        print (bcolors.OKGREEN,"HA DMS=> ", str(Dd),"°",str(Md),"'",str(Sd),'"',bcolors.ENDC)
         break;
     except ValueError:
         print ("Invalid input")
 
-
-#print ('East ' + str(TargetEast) + ',' + 'North ' + str(TargetNorth))
 
 # Main Calculation of Polar coordinat
 SD = (BA-BT)*200
@@ -186,3 +185,5 @@ print ("N:",round(N,3))
 print ("E:",round(E,3))
 print ("Z:",round(Z,3))
 
+print (bcolors.OKYELLOW,'Pahor.m @Oktober 2022',bcolors.ENDC)
+print (bcolors.OKYELLOW,'Foreman Surveyor',bcolors.ENDC)
