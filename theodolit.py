@@ -161,10 +161,10 @@ while True:
 
 # Main Calculation of Polar coordinat
 SD = (BA-BT)*200
-HD = math.sin(math.radians(VA))*SD
+HD = (math.sin(math.radians(VA))**2)*SD
 
-dN = (SD * math.sin(math.radians(VA))) * math.cos(math.radians(HA))
-dE = (SD * math.sin(math.radians(VA))) * math.sin(math.radians(HA))
+dN = HD * math.cos(math.radians(HA))
+dE = HD * math.sin(math.radians(HA))
 dZ = (SD * math.cos(math.radians(VA))) + HI - BT
 
 N = bN + dN
