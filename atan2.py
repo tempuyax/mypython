@@ -70,9 +70,9 @@ while True:
 #print ('East ' + str(TargetEast) + ',' + 'North ' + str(TargetNorth))
 
 # Main Calculation of Bearing
-nLat = TargetEast-BaseEast
-nDef = TargetNorth - BaseNorth
-AzimutRad = math.atan2 (nLat,nDef)
+nDep = TargetEast - BaseEast
+nLat = TargetNorth - BaseNorth
+AzimutRad = math.atan2 (nDep,nLat)
 AzimutDeg = math.degrees(AzimutRad)
 Azimut360 = sign_360(AzimutDeg)
 print (bcolors.BOLD,'~Bearing~',bcolors.ENDC)
